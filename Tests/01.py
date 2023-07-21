@@ -4,7 +4,7 @@ import pygame
 TITLE = "Nuquinha"
 WIDTH = 800
 HEIGHT = 600
-LOGO = media/'billiard-ball.png'
+LOGO = 'media/billiard-ball.png'
 
 #initialisateur
 pygame.init()
