@@ -6,7 +6,7 @@ import sys
 TITLE = "Nuquinha"
 WIDTH = 800
 HEIGHT = 600
-LOGO = 'billiard-ball.png'
+LOGO = 'media/billiard-ball.png'
 
 #initialisateur
 
