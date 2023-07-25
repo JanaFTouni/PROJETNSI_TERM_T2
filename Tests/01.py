@@ -1,5 +1,4 @@
 import pygame
-import sys
 
 #constantes du jue
 
@@ -22,6 +21,7 @@ is_running = True
 while is_running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            pygame.quit()
-            sys.exit()
+            is_running = False
     pygame.display.update()
+    
+pygame.quit()
