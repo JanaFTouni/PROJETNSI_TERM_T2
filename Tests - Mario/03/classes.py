@@ -21,7 +21,7 @@ class Player:
         
         if self.t > 0:
             self.t -= 1
-            self.y -= 1
+            self.y -= 2
         
         if pyxel.btnp(pyxel.KEY_SPACE) and not self.chute:
             self.chute = True
@@ -60,6 +60,7 @@ class Bloc:
                 
             elif (self.y + 15) <= other.y <= (self.y + 16):
                 other.y = self.y + 16
+                other.t = 0
                 
             elif other.x - other.longueur == self.x + 1:
                 other.x = self.x - other.longueur
