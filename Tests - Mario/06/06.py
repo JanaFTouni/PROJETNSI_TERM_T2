@@ -11,12 +11,16 @@ def collision_generale(blocs, joueur):
             
     return recul
 
-def mouvement_general(blocs, recul):
+def mouvement_general(blocs, recul, joueur):
     for bloc in blocs:
-        if pyxel.btn(pyxel.KEY_D):
+        if pyxel.btn(pyxel.KEY_D) or pyxel.btn(pyxel.KEY_RIGHT):
+            joueur.u, joueur.v = 32, 0
+            joueur.inverse = False
             bloc.x -= 1
             
-        elif pyxel.btn(pyxel.KEY_A):
+        elif pyxel.btn(pyxel.KEY_A) or pyxel.btn(pyxel.KEY_LEFT):
+            joueur.u, joueur.v = 32, 0
+            joueur.inverse = True
             bloc.x += 1
         bloc.x += recul
       
@@ -30,9 +34,9 @@ class App:
          pyxel.run(self.update, self.draw)
          
     def update(self):    
-        self.joueur.mouvement()
+        self.joueur.mouvement_vertical()
         
-        mouvement_general(self.blocs, self.recul)
+        mouvement_general(self.blocs, self.recul, self.joueur)
         self.recul = collision_generale(self.blocs, self.joueur)
     
     def draw(self):
@@ -40,9 +44,14 @@ class App:
         
         pyxel.bltm(0, 0, 0, 0, 0, 256, 240)
         
-        pyxel.blt(self.joueur.x, self.joueur.y,
+        if self.joueur.inverse: #Dessin inverse
+            pyxel.blt(self.joueur.x, self.joueur.y,
                   0, self.joueur.u, self.joueur.v,
-                  self.joueur.longueur, self.joueur.taille, 0)
+                  -self.joueur.longueur, self.joueur.taille, 0)
+        else:
+            pyxel.blt(self.joueur.x, self.joueur.y,
+                      0, self.joueur.u, self.joueur.v,
+                      self.joueur.longueur, self.joueur.taille, 0)
         
         for bloc in self.blocs:
             if - 100 <= bloc.x <= 348:
