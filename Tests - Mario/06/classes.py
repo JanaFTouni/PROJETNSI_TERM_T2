@@ -5,18 +5,19 @@ class Player:
         self.x = x
         self.y = y
         
-        self.longueur = 13
+        self.longueur = 16
         self.taille = 16
         
         self.centre = (self.longueur // 2, self.taille // 2)
         
         self.u = 0
         self.v = 0
+        self.inverse = False #dessin inverse
         
         self.saut = False
         self.t = 0 # Temps du saut
         
-    def mouvement(self):
+    def mouvement_vertical(self):
         self.y += 2
         
         if self.t > 0:
@@ -25,7 +26,8 @@ class Player:
             if self.t <= 16:
                 self.y += 2
         
-        if (pyxel.btnp(pyxel.KEY_SPACE) or pyxel.btnp(pyxel.KEY_W)) and self.saut:
+        if (pyxel.btnp(pyxel.KEY_SPACE) or pyxel.btnp(pyxel.KEY_W) or pyxel.btn(pyxel.KEY_UP)) and self.saut:
+            self.u, self.v = 0, 16
             self.saut = False
             self.t = 48
         
@@ -52,6 +54,8 @@ class Bloc:
                 other.y -= 2
                 if other.t < 1:
                     other.saut = True
+                    if not (pyxel.btn(pyxel.KEY_D) or pyxel.btn(pyxel.KEY_A) or pyxel.btn(pyxel.KEY_RIGHT) or pyxel.btn(pyxel.KEY_LEFT)):
+                        other.u, other.v = 0,0
                 
             elif (self.y + 13) <= other.y <= (self.y + 16): #Collision inférieure
                 other.y = self.y + 16
