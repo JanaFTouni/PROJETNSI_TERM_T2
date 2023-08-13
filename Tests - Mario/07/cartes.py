@@ -1,5 +1,5 @@
 import classes
-
+ 
 def carte1_1_blocs() -> list[classes.Bloc]:
     """Renvoie une liste contenant tous les blocs
     du monde 1_1"""
