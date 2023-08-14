@@ -6,7 +6,7 @@ import fonctions
 class App:
     def __init__(self):
         self.jeu = False
-        pyxel.init(256, 240, title="07 - Ennemis", fps=60)
+        pyxel.init(256, 240, title="08 - Complet", fps=60)
         self.new_game()
         self.recul = 0
         pyxel.run(self.update, self.draw)
